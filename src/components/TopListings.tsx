@@ -137,15 +137,27 @@ export default function TopListings() {
   const isTopPaused = topHovered || isAnyExpanded;
   const isBottomPaused = bottomHovered || isAnyExpanded;
 
+  const handleTopMouseEnter = () => {
+    if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+      setTopHovered(true);
+    }
+  };
+
+  const handleBottomMouseEnter = () => {
+    if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+      setBottomHovered(true);
+    }
+  };
+
   return (
     <section
       id="top-listings"
       aria-label="Top Listings"
-      className="w-full bg-neutral-50 px-3 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-10 overflow-hidden relative"
+      className="w-full bg-neutral-50 py-6 sm:py-8 md:py-10 overflow-hidden relative"
     >
-      <div className="w-full max-w-[1720px] mx-auto flex flex-col gap-4 sm:gap-5">
-        {/* Section Header: Title & Subheading for mobile only (hidden on desktop) */}
-        <div className="flex md:hidden flex-col gap-2 mb-1 px-2 sm:px-4">
+      {/* Section Header: Preserved padding container for mobile */}
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
+        <div className="flex md:hidden flex-col gap-2 mb-3 px-2 sm:px-4">
           <div className="max-w-2xl">
             {/* Title */}
             <motion.h2
@@ -170,10 +182,13 @@ export default function TopListings() {
             </motion.p>
           </div>
         </div>
+      </div>
 
+      {/* Marquee Rows: 100% Full Width, 0 space on left and right */}
+      <div className="w-full flex flex-col gap-4 sm:gap-5">
         {/* ROW 1: Full-width right-to-left marquee flowing BEHIND Top Listings card in foreground */}
         <div className="relative w-full h-[280px] sm:h-[300px] md:h-[310px] flex items-center overflow-hidden">
-          {/* Top Listings Intro CTA Card - Sits in foreground z-20 on the left on desktop, hidden on mobile */}
+          {/* Top Listings Intro CTA Card - Sits flush at the left end (left-0) in foreground z-20 on desktop, hidden on mobile */}
           <div className="hidden md:flex absolute left-0 top-0 bottom-0 z-20 w-[205px] sm:w-[240px] md:w-[270px] bg-neutral-50 rounded-br-2xl rounded-tr-2xl p-4 sm:p-5 border border-neutral-300/90 shadow-[6px_0_20px_-2px_rgba(0,0,0,0.08),_0_2px_8px_rgba(0,0,0,0.04)] flex-col justify-between shrink-0"> 
             <div className="flex flex-col gap-2 sm:gap-2.5">
               <h3 className="text-xl sm:text-2xl lg:text-[23px] font-medium text-neutral-900 tracking-tight leading-tight">
@@ -199,11 +214,13 @@ export default function TopListings() {
           {/* Marquee Track: Full width, cards scroll continuously Right to Left BEHIND the intro card */}
           <div
             className="w-full h-full overflow-hidden flex items-center z-10"
-            onMouseEnter={() => setTopHovered(true)}
+            onMouseEnter={handleTopMouseEnter}
             onMouseLeave={() => setTopHovered(false)}
+            onTouchStart={() => setTopHovered(false)}
+            onTouchEnd={() => setTopHovered(false)}
           >
             <div
-              className="flex gap-3.5 sm:gap-4 items-center w-max animate-marquee-left"
+              className="flex gap-3.5 sm:gap-4 items-center w-max animate-marquee-left touch-pan-y"
               style={{
                 animationDuration: "48s",
                 animationPlayState: isTopPaused ? "paused" : "running",
@@ -226,11 +243,13 @@ export default function TopListings() {
         {/* ROW 2: Bottom Cards Marquee Track scrolling Left to Right (Straight overflow-hidden edges) */}
         <div
           className="relative w-full overflow-hidden h-[280px] sm:h-[300px] md:h-[310px] flex items-center"
-          onMouseEnter={() => setBottomHovered(true)}
+          onMouseEnter={handleBottomMouseEnter}
           onMouseLeave={() => setBottomHovered(false)}
+          onTouchStart={() => setBottomHovered(false)}
+          onTouchEnd={() => setBottomHovered(false)}
         >
           <div
-            className="flex gap-3.5 sm:gap-4 items-center w-max animate-marquee-right"
+            className="flex gap-3.5 sm:gap-4 items-center w-max animate-marquee-right touch-pan-y"
             style={{
               animationDuration: "48s",
               animationPlayState: isBottomPaused ? "paused" : "running",
@@ -248,14 +267,16 @@ export default function TopListings() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* View All Button Below Cards in Center */}
+      {/* View All Button Below Cards in Center with container padding */}
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
-          className="w-full flex justify-center items-center pt-2 sm:pt-4"
+          className="w-full flex justify-center items-center pt-4 sm:pt-6"
         >
           <Link
             href="#listings"

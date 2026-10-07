@@ -19,7 +19,7 @@ export default function Navbar({ className = "" }: NavbarProps) {
   const [propertiesOpen, setPropertiesOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("home");
 
-  // Smooth scroll handler with Lenis support
+  // Smooth scroll handler
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
     href: string,
@@ -35,14 +35,7 @@ export default function Navbar({ className = "" }: NavbarProps) {
       document.querySelector(targetSelector) || document.querySelector(href);
 
     if (targetElement) {
-      if (typeof window !== "undefined" && window.__lenis) {
-        window.__lenis.scrollTo(targetElement as HTMLElement, {
-          offset: -16,
-          duration: 1.2,
-        });
-      } else {
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 

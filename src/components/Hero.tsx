@@ -29,7 +29,7 @@ export default function Hero() {
       <div className="relative z-20 w-full px-5 sm:px-10 md:px-12 lg:px-14 my-auto  max-w-5xl flex flex-col gap-1.5 sm:gap-2 pt-8 sm:pt-12 md:pt-14 lg:pt-16">
         {/* Row 1: Bold Sans Headline + Social Proof Stack (Desktop only for badge) */}
         <div className="flex flex-wrap items-center gap-2.5 sm:gap-3.5">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[56px] font-semibold tracking-tight text-neutral-100 leading-tight sm:leading-none drop-shadow-sm">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px]  font-semibold tracking-tight text-neutral-100 leading-tight sm:leading-none drop-shadow-sm">
             Find Your Dream Home
           </h1>
 
@@ -74,11 +74,11 @@ export default function Hero() {
         </div>
 
         {/* Row 2: Editorial Sans Accent (Wraps naturally on mobile) */}
-        <div className="text-xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[48px] tracking-tight leading-snug sm:leading-none whitespace-normal sm:whitespace-nowrap -mt-0.5 drop-shadow-sm">
+        <div className="text-2xl md:text-4xl lg:text-4xl lg:text-[48px]  tracking-tight leading-snug sm:leading-none whitespace-normal sm:whitespace-nowrap -mt-0.5 drop-shadow-sm">
           <span className="font-regular font-serif italic text-neutral-50 mr-2 sm:mr-3">
             across prime locations.
           </span>
-          <span className="font-semibold text-neutral-50">
+          <span className="font-semibold text-neutral-50 text-3xl md:text-5xl lg:text-[64px]">
             Iconic living
           </span>
         </div>
