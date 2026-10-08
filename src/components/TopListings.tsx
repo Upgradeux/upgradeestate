@@ -38,7 +38,7 @@ const row1Properties: TopListing[] = [
     price: "$19,500.00",
     description:
       "A statement oceanfront duplex featuring floor-to-ceiling acoustic glass, sunset horizons, and imported stone finishes.",
-    image: "/assets/images/hero-6.jpg",
+    image: "/assets/images/hero-5.jpg",
   },
   {
     id: "blissful-estate",
